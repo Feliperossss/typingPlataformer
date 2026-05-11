@@ -1,4 +1,4 @@
-using System;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,13 +11,25 @@ public class typingScript : MonoBehaviour
 
     public playerScript player;
 
-    private string currentWord = "walk";
+    private string currentWord;
 
     private string playerInput = "";
 
+    private string[] words =
+    {   
+        "castle",
+        "sword",
+        "dragon",
+        "pixel",
+        "unity"
+    };
+
+
+
+
     private void Start()
     {
-        wordText.text = currentWord;
+        GenerateWord();
     }
 
     private void Update()
@@ -42,7 +54,16 @@ public class typingScript : MonoBehaviour
             playerInput = "";
 
             typedText.text = "";
+            GenerateWord();
+            
         }
+    }
+
+    void GenerateWord()
+    {
+        currentWord = words[Random.Range(0, words.Length)];
+        wordText.text = currentWord;
+
     }
 
     private void deleteWord()
@@ -73,6 +94,7 @@ public class typingScript : MonoBehaviour
                     playerInput += keyName;
 
                     typedText.text = playerInput;
+                    
                 }
             }
         }
