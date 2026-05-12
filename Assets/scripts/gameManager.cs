@@ -1,16 +1,40 @@
+using UnityEditor.AnimatedValues;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   #region  Singleton
+        private static gameManager _instance;
+
+        public static gameManager instance => _instance;
+
+    private void Awake()
     {
-        
+        if(_instance != null)
+        {
+            Destroy(gameObject);
+
+        }
+        else
+        {
+            _instance = this;
+        }
+
+    }
+    #endregion
+
+
+        public string[] words =
+    {
+        "asdf",
+        "jklç"
+    };
+
+    public void loadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

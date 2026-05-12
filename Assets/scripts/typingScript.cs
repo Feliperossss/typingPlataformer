@@ -15,20 +15,19 @@ public class typingScript : MonoBehaviour
 
     private string playerInput = "";
 
-    private string[] words =
-    {   
-        "castle",
-        "sword",
-        "dragon",
-        "pixel",
-        "unity"
+       public string[] words =
+    {
+        "asdf",
+        "jklç"
     };
+   
 
 
 
 
     private void Start()
     {
+        
         GenerateWord();
     }
 
@@ -61,8 +60,11 @@ public class typingScript : MonoBehaviour
 
     void GenerateWord()
     {
-        currentWord = words[Random.Range(0, words.Length)];
+        currentWord = words[
+            Random.Range(0, words.Length)];
+        Debug.Log("Current Word: " + currentWord);
         wordText.text = currentWord;
+
 
     }
 
