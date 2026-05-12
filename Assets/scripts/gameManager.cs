@@ -1,4 +1,4 @@
-using UnityEditor.AnimatedValues;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,16 +24,52 @@ public class gameManager : MonoBehaviour
     }
     #endregion
 
+    
+    public   playerScript player;
+    public   uiManager uiManager;
+    public wordManager wordManager;
 
-        public string[] words =
+    public inputManager inputManager;
+
+    private string currentWord;
+
+
+
+    private void Start()
     {
-        "asdf",
-        "jklç"
-    };
+        
+        currentWord = wordManager.GenerateWord();
 
+        uiManager.UpdateWordText(currentWord);
+    }
+
+    private void Update()
+    {
+        
+        inputManager.readWord();
+        inputManager.deleteWord();
+        uiManager.UpdateTypedText(inputManager.playerInput);
+        verifyCurrentWord();
+    }
     public void loadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+
+
+    
+    private void verifyCurrentWord()
+    {
+         if(inputManager.playerInput == wordManager.GetCurrentWord())
+        {
+            player.playerMovement();
+            inputManager.resetInput();
+            
+            currentWord = wordManager.GenerateWord();;
+            uiManager.UpdateWordText(currentWord);
+        }
     }
 
     

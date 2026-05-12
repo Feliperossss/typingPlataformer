@@ -27,6 +27,7 @@ public class playerScript : MonoBehaviour
     public void playerMovement()
     {
          moveDirection = Vector2.right;
+         StartCoroutine(StopMovement());
     }  
 
     private void FixedUpdate()
